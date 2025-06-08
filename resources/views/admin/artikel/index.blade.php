@@ -6,6 +6,11 @@
         <h1 class="text-2xl font-bold">Kelola Artikel</h1>
         <a href="{{ route('dashboard.artikel.create') }}" class="px-4 py-2 bg-blue-600 text-white rounded">Tambah</a>
     </div>
+    @if(session('status'))
+        <div class="mb-4 p-3 bg-green-100 text-green-700 rounded">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="overflow-x-auto bg-white shadow rounded">
         <table class="min-w-full">
             <thead>

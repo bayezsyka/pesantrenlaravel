@@ -72,3 +72,4 @@ dashboard.
 3. Run `php artisan key:generate` and `php artisan migrate`
 4. Build assets with `npm run build`
 5. Start the local server with `php artisan serve`
+6. Register an account to access the dashboard
