@@ -76,6 +76,7 @@
                 <x-responsive-nav-link :href="route('dashboard.pendaftaran.index')" :active="request()->is('dashboard/pendaftaran*')">Data Pendaftar</x-responsive-nav-link>
             @endauth
         </div>
+
         <div class="pt-4 pb-1 border-t border-gray-200">
             @auth
             <div class="px-4">

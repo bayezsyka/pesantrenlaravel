@@ -28,8 +28,7 @@ class ArtikelController extends Controller
             'isi' => 'required',
         ]);
         Artikel::create($data);
-        return redirect()->route('dashboard.artikel.index')
-            ->with('status', 'Artikel created');
+        return redirect()->route('dashboard.artikel.index')->with('status', 'Artikel created');
     }
 
     public function edit(Artikel $artikel)
@@ -46,14 +45,12 @@ class ArtikelController extends Controller
             'isi' => 'required',
         ]);
         $artikel->update($data);
-        return redirect()->route('dashboard.artikel.index')
-            ->with('status', 'Artikel updated');
+        return redirect()->route('dashboard.artikel.index')->with('status', 'Artikel updated');
     }
 
     public function destroy(Artikel $artikel)
     {
         $artikel->delete();
-        return redirect()->route('dashboard.artikel.index')
-            ->with('status', 'Artikel deleted');
+        return redirect()->route('dashboard.artikel.index')->with('status', 'Artikel deleted');
     }
 }

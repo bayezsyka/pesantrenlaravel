@@ -28,8 +28,8 @@
                     <td class="px-4 py-2">{{ $a->penulis }}</td>
                     <td class="px-4 py-2">{{ $a->created_at->format('d M Y') }}</td>
                     <td class="px-4 py-2 text-right space-x-2">
-                        <a href="{{ route('dashboard.artikel.edit',$a) }}" class="text-blue-600">Edit</a>
-                        <form action="{{ route('dashboard.artikel.destroy',$a) }}" method="POST" class="inline" onsubmit="return confirm('Hapus?')">
+                        <a href="{{ route('dashboard.artikel.edit', $a) }}" class="text-blue-600">Edit</a>
+                        <form action="{{ route('dashboard.artikel.destroy', $a) }}" method="POST" class="inline" onsubmit="return confirm('Hapus?')">
                             @csrf @method('DELETE')
                             <button class="text-red-600">Hapus</button>
                         </form>
