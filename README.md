@@ -58,4 +58,17 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Features
+
+This application provides a simple pesantren website built with Laravel.
+Visitors may read published articles and submit a registration form. Logged in
+users can manage articles and review the registration list from a protected
+dashboard.
+
+### Getting Started
+
+1. Install dependencies via Composer and NPM
+2. Copy `.env.example` to `.env` and adjust your database settings
+3. Run `php artisan key:generate` and `php artisan migrate`
+4. Build assets with `npm run build`
+5. Start the local server with `php artisan serve`
