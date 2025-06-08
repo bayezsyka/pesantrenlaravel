@@ -47,15 +47,12 @@
         @endif
     </header>
 
-     <body>
-        <div class="bg-gray-100">
-            @include('partials_welcome.welkam')
-
-            <!-- Page Content -->
-            {{-- <main>
-                {{ $slot }}
-            </main> --}}
+    <main class="py-10">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold mb-4">Selamat Datang</h1>
+            <p class="mb-6">Silakan lihat daftar artikel atau lakukan pendaftaran santri.</p>
+            <a href="{{ route('artikel.index') }}" class="btn-primary">Lihat Artikel</a>
         </div>
-    </body>
+    </main>
 </body>
 </html>
