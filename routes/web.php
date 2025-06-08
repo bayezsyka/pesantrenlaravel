@@ -1,38 +1,38 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ArtikelController as AdminArtikelController;
 use App\Http\Controllers\Admin\PendaftaranController as AdminPendaftaranController;
 
-use App\Http\Controllers\ArtikelController;
+// Halaman utama
+Route::get('/', [ArtikelController::class, 'index'])->name('home');
 
+// Artikel publik
+Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
+Route::get('/artikel/{artikel}', [ArtikelController::class, 'show'])->name('artikel.show');
 
-Route::get('/', [ArtikelController::class,'index'])->name('home');
-Route::get('/artikel/{artikel}', [ArtikelController::class,'show'])->name('artikel.show');
-Route::get('/artikel', [ArtikelController::class,'index'])->name('artikel.index');
+// Formulir pendaftaran
+Route::get('/pendaftaran', [PendaftaranController::class, 'create'])->name('pendaftaran.create');
+Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
 
-Route::get('/pendaftaran', [PendaftaranController::class,'create'])->name('pendaftaran.create');
-Route::post('/pendaftaran', [PendaftaranController::class,'store'])->name('pendaftaran.store');
+// Route untuk user login & terverifikasi
+Route::middleware(['auth', 'verified'])->group(function () {
 
+    // Dashboard (opsional: jika ingin pakai blade atau statis view)
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
 
-Route::middleware(['auth','verified'])->group(function(){
-    Route::get('/dashboard', function(){return view('dashboard');})->name('dashboard');
-    Route::get('/profile', [ProfileController::class,'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class,'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class,'destroy'])->name('profile.destroy');
-=======
-Route::resource('artikel', ArtikelController::class)->only(['index','show']);
-Route::get('/', function () {
-    return view('welkambgt');
-})->middleware(['auth', 'verified'])->name('welkam');
+    // Artikel & pendaftaran untuk admin di dashboard
+    Route::resource('dashboard/artikel', AdminArtikelController::class);
+    Route::get('dashboard/pendaftaran', [AdminPendaftaranController::class, 'index'])->name('dashboard.pendaftaran.index');
 
-
-    Route::resource('/dashboard/artikel', AdminArtikelController::class);
-    Route::get('/dashboard/pendaftaran', [AdminPendaftaranController::class,'index'])->name('dashboard.pendaftaran.index');
+    // Profile pengguna
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Authentication routes
 require __DIR__.'/auth.php';
