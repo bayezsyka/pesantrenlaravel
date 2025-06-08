@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Laravel</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Styles / Scripts -->
+    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @endif
+    <style>
+        html { scroll-behavior: smooth; }
+        .pt-16 { padding-top: 4rem; }
+        .pb-16 { padding-bottom: 4rem; }
+        .btn-primary {
+            @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 inline-block;
+        }
+        .btn-outline {
+            @apply border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 inline-block;
+        }
+    </style>
+</head>
+<body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex items-center lg:justify-center flex-col">
+
+    <header class="w-full lg:max-w-4xl max-w-[335px] text-sm py-6">
+        @if (Route::has('login'))
+            <nav class="flex items-center justify-end gap-4">
+                @auth
+                    <a href="{{ url('/dashboard') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
+                        Dashboard
+                    </a>
+                @else
+                    <a href="{{ route('login') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">
+                        Log in
+                    </a>
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
+                            Register
+                        </a>
+                    @endif
+                @endauth
+            </nav>
+        @endif
+    </header>
+
+     <body>
+        <div class="bg-gray-100">
+            @include('partials_welcome.welkam')
+
+            <!-- Page Content -->
+            {{-- <main>
+                {{ $slot }}
+            </main> --}}
+        </div>
+    </body>
+</body>
+</html>
