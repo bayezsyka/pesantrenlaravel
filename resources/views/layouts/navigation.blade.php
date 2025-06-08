@@ -16,6 +16,9 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                    <x-nav-link :href="{{ route('artikel.index') }}" :active="request()->routeIs('artikel.*')">
+                        Artikel
+                    </x-nav-link>
             </div>
 
             <!-- Settings Dropdown -->
@@ -72,6 +75,9 @@
             </x-responsive-nav-link>
         </div>
 
+            <x-responsive-nav-link :href="{{ route('artikel.index') }}" :active="request()->routeIs('artikel.*')">
+                Artikel
+            </x-responsive-nav-link>
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
